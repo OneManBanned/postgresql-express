@@ -1,14 +1,21 @@
+import db from "../db/queries.js";
+
 class Controller {
+  async getUsernames(req, res) {
+   const usernames = await db.getAllUsernames();
+  console.log("Usernames: ", usernames);
+  res.send("Usernames: " + usernames.map((user) => user.username).join(", "));
+  }
 
-    get(req, res) {
-    return  res.render("index")
-    }
+  async createUsernamesGet(req, res) {
+    return res.render("index");
+  }
 
-    post(req, res) {
-          console.log("username to be saved ", req.body.username)
-          res.redirect("/")
-    }
-
+  async createUsernamePost(req, res) {
+    const { username } = req.body;
+    await db.insertUsername(username);
+    res.redirect("/");
+  }
 }
 
 export default new Controller();

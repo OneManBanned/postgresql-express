@@ -3,7 +3,7 @@ import Controller from "../controllers/newControllers.js";
 
 const newRouter = Router();
 
-newRouter.get("/", Controller.get)
-newRouter.post("/", Controller.post)
+newRouter.get("/", Controller.createUsernamesGet)
+newRouter.post("/", Controller.createUsernamePost)
 
 export default newRouter

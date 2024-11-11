@@ -2,13 +2,18 @@ import db from "../db/queries.js";
 
 class Controller {
   async getUsernames(req, res) {
-   const usernames = await db.getAllUsernames();
-  console.log("Usernames: ", usernames);
-  res.send("Usernames: " + usernames.map((user) => user.username).join(", "));
+    const usernames = await db.getAllUsernames();
+    res.render("index", { users: usernames });
+  }
+
+  async getSearchUsernames(req, res) {
+    const { search } = req.query;
+    const usernames = await db.searchAllUsernames(search);
+    res.render("index", { users: usernames });
   }
 
   async createUsernamesGet(req, res) {
-    return res.render("index");
+    return res.render("create");
   }
 
   async createUsernamePost(req, res) {

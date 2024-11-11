@@ -15,6 +15,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.get("/", Controller.getUsernames);
+app.get("/search", Controller.getSearchUsernames);
 app.use("/new", newRouter);
 
 app.listen(PORT, () => console.log(`listening on http://localhost:${PORT}`));
